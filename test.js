@@ -17,6 +17,12 @@ class B {
   method = () => {
     return 'Hello';
   }
+  method2 = async () => {
+    const result = await new Promise((res) => {
+      setTimeout(() => res('Hello Async'), 1000);
+    });
+    return result;
+  }
 }
 
 class B1 extends B {
@@ -24,6 +30,10 @@ class B1 extends B {
   test2 = 456;
   method = () => {
     return super.method() + ' World';
+  }
+  method2 = async () => {
+    const result = await super.method2() + ' World';
+    console.log(result);
   }
 }
 

@@ -1,4 +1,5 @@
 # babel-plugin-transform-class-property-arrow-to-bind
+[![npm version](https://badge.fury.io/js/babel-plugin-transform-class-property-arrow-to-bind.svg)](https://badge.fury.io/js/babel-plugin-transform-class-property-arrow-to-bind)
 
 Babel plugin for transform arrow functions in class to bind in constructor, fork of [louisscruz's plugin](https://github.com/louisscruz/babel-plugin-transform-class-property-arrow-functions)
 
@@ -22,6 +23,12 @@ class B {
   method = () => {
     return 'Hello';
   }
+  method2 = async () => {
+    const result = await new Promise((res) => {
+      setTimeout(() => res('Hello Async'), 1000);
+    });
+    return result;
+  }
 }
 
 class B1 extends B {
@@ -29,6 +36,10 @@ class B1 extends B {
   test2 = 456;
   method = () => {
     return super.method() + ' World';
+  }
+  method2 = async () => {
+    const result = await super.method2() + ' World';
+    console.log(result);
   }
 }
 
@@ -59,10 +70,18 @@ class B {
   constructor() {
     this.test3 = 1337;
     this.method = this.method.bind(this);
+    this.method2 = this.method2.bind(this);
   }
 
   method() {
     return 'Hello';
+  }
+
+  async method2() {
+    const result = await new Promise(res => {
+      setTimeout(() => res('Hello Async'), 1000);
+    });
+    return result;
   }
 
 }
@@ -73,10 +92,16 @@ class B1 extends B {
     this.test = 123;
     this.test2 = 456;
     this.method = this.method.bind(this);
+    this.method2 = this.method2.bind(this);
   }
 
   method() {
     return super.method() + ' World';
+  }
+
+  async method2() {
+    const result = (await super.method2()) + ' World';
+    console.log(result);
   }
 
 }

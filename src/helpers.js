@@ -67,5 +67,6 @@ export const convertClassPropertyToMethod = (classPropertyPath, identifierName, 
     false,
     null
   );
+  newMethod.async = classPropertyPath.node.value.async;
   classPropertyPath.replaceWith(newMethod);
 }

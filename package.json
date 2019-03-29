@@ -1,0 +1,26 @@
+{
+  "name": "babel-plugin-transform-class-property-arrow-to-bind",
+  "version": "1.0.0",
+  "description": "Babel plugin for transform class arrow methods to bind in constructor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "babel src --out-dir dist && cp {package.json,README.md} dist"
+  },
+  "keywords": [
+    "babel",
+    "plugin",
+    "transform",
+    "arrow",
+    "bind",
+    "constructor"
+  ],
+  "author": "Nikita Savyolov",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.4.0"
+  }
+}
